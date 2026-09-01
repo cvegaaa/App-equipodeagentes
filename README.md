@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GEIFEM Agentes
 
-## Getting Started
+Panel de agentes de IA para GEIFEM: automatiza atención al cliente por WhatsApp y Telegram, y tareas contables conectadas a Alegra.
 
-First, run the development server:
+## Qué resuelve
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Da a un equipo un panel con organizaciones, miembros y agentes configurables que responden por WhatsApp/Telegram, generan reportes periódicos y se conectan al ERP contable Alegra para automatizar tareas administrativas.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Funcionalidades principales
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Chat entrante/saliente por WhatsApp Business Cloud API y Telegram.
+- Conectores a proveedores externos (Alegra) para operaciones contables.
+- Panel de observabilidad y monitoreo de tareas en ejecución.
+- Reportes periódicos automáticos (cron jobs).
+- Gestión de organizaciones y miembros con roles.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Stack técnico
 
-## Learn More
+- Next.js (App Router) + TypeScript
+- PostgreSQL vía Drizzle ORM
+- better-auth
+- Modelo de lenguaje vía API de Anthropic (Claude)
+- Docker / docker-compose
+- Playwright (tests end-to-end), Biome (lint/format)
 
-To learn more about Next.js, take a look at the following resources:
+## Estado
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+En desarrollo.
