@@ -1,0 +1,1 @@
+ALTER TABLE "agent_config" ALTER COLUMN "sync_schedule" SET DEFAULT '0 0 * * *';

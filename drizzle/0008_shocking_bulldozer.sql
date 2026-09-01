@@ -1,0 +1,2 @@
+ALTER TABLE "runs" DROP CONSTRAINT "runs_trigger_check";--> statement-breakpoint
+ALTER TABLE "runs" ADD CONSTRAINT "runs_trigger_check" CHECK ("runs"."trigger_type" in ('dian_sync','chat_request','invoice_request','copilot_request'));

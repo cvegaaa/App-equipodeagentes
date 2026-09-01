@@ -1,0 +1,54 @@
+name: geifem-agentes
+
+services:
+  db:
+    image: postgres:18-alpine # VERIFY: confirmar tag LTS vigente de Postgres al momento del build
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: geifem
+      POSTGRES_PASSWORD: geifem
+      POSTGRES_DB: geifem_agentes
+    ports:
+      - "5432:5432"
+    volumes:
+      - geifem_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U geifem -d geifem_agentes"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://geifem:geifem@db:5432/geifem_agentes
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["node", "dist/server/jobs/worker.js"]
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://geifem:geifem@db:5432/geifem_agentes
+
+volumes:
+  geifem_db_data:

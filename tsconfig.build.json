@@ -1,0 +1,19 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "outDir": "./dist",
+    "module": "nodenext",
+    "moduleResolution": "nodenext"
+  },
+  "include": ["src/server/**/*.ts"],
+  "exclude": [
+    "node_modules",
+    "blueprints",
+    ".next",
+    "dist",
+    "src/app",
+    "src/components",
+    "**/*.test.ts"
+  ]
+}
